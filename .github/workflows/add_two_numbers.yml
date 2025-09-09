@@ -1,0 +1,21 @@
+name: Generate a function that adds two numbers
+on:
+  push:
+  workflow_dispatch:    
+  schedule:
+    - cron: '00 1 6 10 2 & 3*' # At 00:1 on October 2nd every Tuesday and Wednesday
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+
+      - name: Run the script
+        run: python add_two_numbers.py
