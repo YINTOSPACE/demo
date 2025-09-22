@@ -1,0 +1,12 @@
+name : function that converts a binary number to decimal
+on:
+  push:
+  workflow_dispatch:    
+  schedule:
+    - cron: '30 2 8 11 *' # At 02:30 on November 8th
+jobs:   
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3   
