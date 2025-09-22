@@ -1,0 +1,35 @@
+name: Basic Class Attendance
+on:
+  push:
+  workflow_dispatch:    
+  schedule:
+    - cron: '15 3 * * 1' # At 03:15 every Monday
+jobs:   
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3     
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Run the script
+        run: python basic_class_attendance.py
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github
+          git add .
+          git commit -m 'Update attendance record' || echo "No changes to commit"
+          git push origin HEAD:main.io
+          git add .
+          git commit -m 'Update attendance record' || echo "No changes to commit"
+
+
+
+
+
+
+
+
